@@ -11,7 +11,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
-class HuobiOtcController extends ComController
+class HuobiOtcController
 {
     public function index()
     {
@@ -21,9 +21,9 @@ class HuobiOtcController extends ComController
 
     public function getSymbol($symbol,$type)
     {
-            if ($symbol =='btc')
+            if ($symbol =='snt')
             {
-                $symbol = 'btcusdt' ;
+                $symbol = 'sntusdt' ;
                 $price = $this->huobi($symbol,$type);
                 return $price;
             }
@@ -42,9 +42,16 @@ class HuobiOtcController extends ComController
                 return $price;
             }
 
-            if ($symbol =='ltc')
+            if ($symbol =='hsr')
             {
-                $symbol = 'ltcusdt' ;
+                $symbol = 'hsrusdt' ;
+                $price = $this->huobi($symbol,$type);
+                return $price;
+            }
+
+            if ($symbol =='omg')
+            {
+                $symbol = 'omgusdt' ;
                 $price = $this->huobi($symbol,$type);
                 return $price;
             }

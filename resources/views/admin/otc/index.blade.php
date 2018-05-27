@@ -5,110 +5,69 @@
         <div>Dashboard</div>
     </h1>
 <div class="row">
-    <div class="col-md-12 ">
-        <div class="panel panel-default">
-            <div class="panel-heading">敬请期待</div>
+    <div class="col-12 col-md-6 col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <h4>USDT买入价：{{$inUsdt}}</h4>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive" >
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <th>币种</th>
+                            <th>火币买入</th>
+                            <th>币赢卖出</th>
+                            <th>价差</th>
+                        </tr>
+                        @foreach($in as $k)
+                        <tr>
+                        <td>{{$k['name']}}</td>
+                        <td>{{$k['huobi']}}</td>
+                        <td>{{$k['biying']}}</td>
+                        {{--<td>{{$k['usdt']}}</td>--}}
+                        <td>
+                        差价：<div class="badge badge-success">{{$k['price']}}</div>
+                        </td>
+                        </tr>
 
-            <div class="panel-body">
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                @endif
-                <div class="">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Full Width</h4>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive" >
-                                <table class="table table-striped">
-                                    <tbody>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Name</th>
-                                        <th>Created At</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    <tr id="in">
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-                                        <td>火币买入价：</td>
-                                        <td>币赢卖出价：</td>
-                                        <td>火币usdt买入价：</td>
-                                        <td>
-                                            差价：<div class="badge badge-success"></div>
-                                        </td>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <h4>USDT卖出价：{{$outUsdt}}</h4>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive" >
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <th>币种</th>
+                            <th>火币卖出</th>
+                            <th>币赢买入</th>
+                            <th>价差</th>
+                        </tr>
+                        @foreach($out as $v)
+                        <tr>
+                        <td>{{$v['name']}}</td>
+                        <td>{{$v['huobi']}}</td>
+                        <td>{{$v['biying']}}</td>
+                        {{--<td>{{$v['usdt']}}</td>--}}
+                        <td>
+                        差价：<div class="badge badge-success">{{$v['price']}}</div>
+                        </td>
+                        </tr>
+                        @endforeach
 
-                                        <td>
-                                            <div class="badge">
-                                                <form id="form1">
-                                                    {{csrf_field()}}
-                                                    <div class="input-group">
-                                                        <input type="hidden" name="type" value="1">
-                                                        <input type="text" class="form-control" name="symbol" placeholder="输入币种：btc、eth、eos">
-                                                        <div class="input-group-btn">
-                                                            <a href="javascript:void(0)" onclick="form1(this)" class="btn btn-secondary"><i class="ion ion-search"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr id="out">
-                                        <td>火币买入价：</td>
-                                        <td>币赢卖出价：</td>
-                                        <td>火币usdt买入价：</td>
-                                        <td>
-                                            差价：<div class="badge badge-success"></div>
-                                        </td>
-                                        <td>
-                                            <div class="badge">
-                                            <form id="form2">
-                                                {{csrf_field()}}
-                                                <div class="input-group">
-                                                    <input type="hidden" name="type" value="0">
-                                                    <input type="text" class="form-control" name="symbol" placeholder="输入币种：btc、eth、eos">
-                                                    <div class="input-group-btn">
-                                                        <a href="javascript:void(0)" onclick="form2(this)" class="btn btn-secondary"><i class="ion ion-search"></i></a>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        {{--<div class="card-footer text-right">--}}
-                            {{--<nav class="d-inline-block">--}}
-                                {{--<ul class="pagination mb-0">--}}
-                                    {{--<li class="page-item disabled">--}}
-                                        {{--<a class="page-link" href="#" tabindex="-1">--}}
-                                            {{--<i class="ion ion-chevron-left"></i>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li class="page-item active">--}}
-                                        {{--<a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>--}}
-                                    {{--</li>--}}
-                                    {{--<li class="page-item">--}}
-                                        {{--<a class="page-link" href="#">2</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li class="page-item">--}}
-                                        {{--<a class="page-link" href="#">3</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li class="page-item">--}}
-                                        {{--<a class="page-link" href="#">--}}
-                                            {{--<i class="ion ion-chevron-right">--}}
-
-                                            {{--</i>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                {{--</ul>--}}
-                            {{--</nav>--}}
-                        {{--</div>--}}
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -118,82 +77,11 @@
 @endsection
 @section('admin-js')
     <script>
-        function form1(){
-            var con = $("#form1").serialize();
+        function myrefresh() {
+            window.location.reload();
+        }
+        setTimeout('myrefresh()', 40000); //指定30秒刷新一次
 
-            $.ajax({
-                type: 'POST',
-                url: '{{url('admin/symbol/list')}}',
-                data: con,
-                dataType: 'json',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                },
-                success: function(data){
-//                    console.log(data)
-//                    alert(data.huobi);
-                    var html = '';
-                    html +='<td>火币买入价：'+data.huobi+'</td>';
-                    html +='<td>币赢卖出价：'+data.biying+'</td>';
-                    html +='<td>火币usdt买入价：'+data.usdt+'</td>';
-                    html +='<td>差价：<div class=\"badge badge-success\">'+data.price+'</div></td>';
-                    html +='<td>';
-                    html +='<div class=\"badge\">';
-                    html +='<form id=\"form1\">';
-                    html +='{{csrf_field()}}';
-                    html +='<div class=\"input-group\">';
-                    html +='<input type=\"hidden\" name=\"type\" value=\"1\">';
-                    html +='<input type=\"text\" class=\"form-control\" name=\"symbol\" placeholder=\"输入币种：btc、eth、eos\">';
-                    html +='<div class="input-group-btn">';
-                    html +='<a href=\"javascript:void(0)\" onclick=\"form1(this)\" class=\"btn btn-secondary\"><i class=\"ion ion-search\"></i></a>';
-                    html +='</div>';
-                    html +='</div>';
-                    html +='</form>';
-                    html +='</div>';
-                    html +='</td>';
-                    $("#in").html(html);
-//                    $('#form1').val();
-                }
-            });
-        };
 
-        function form2(){
-            var con = $("#form2").serialize();
-
-            $.ajax({
-                type: 'POST',
-                url: '{{url('admin/symbol/list')}}',
-                data: con,
-                dataType: 'json',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                },
-                success: function(data){
-//                    console.log(data)
-//                    alert(data.huobi);
-                    var html = '';
-                    html +='<td>币赢买入价：'+data.biying+'</td>';
-                    html +='<td>火币卖出价：'+data.huobi+'</td>';
-                    html +='<td>火币usdt卖出价：'+data.usdt+'</td>';
-                    html +='<td>差价：<div class=\"badge badge-success\">'+data.price+'</div></td>';
-                    html +='<td>';
-                    html +='<div class=\"badge\">';
-                    html +='<form id=\"form1\">';
-                    html +='{{csrf_field()}}';
-                    html +='<div class=\"input-group\">';
-                    html +='<input type=\"hidden\" name=\"type\" value=\"1\">';
-                    html +='<input type=\"text\" class=\"form-control\" name=\"symbol\" placeholder=\"输入币种：btc、eth、eos\">';
-                    html +='<div class="input-group-btn">';
-                    html +='<a href=\"javascript:void(0)\" onclick=\"form2(this)\" class=\"btn btn-secondary\"><i class=\"ion ion-search\"></i></a>';
-                    html +='</div>';
-                    html +='</div>';
-                    html +='</form>';
-                    html +='</div>';
-                    html +='</td>';
-                    $("#out").html(html);
-//                    $('#form2').val();
-                }
-            });
-        };
     </script>
 @endsection

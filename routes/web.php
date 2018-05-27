@@ -35,12 +35,8 @@ Route::get('/', function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('admin','Admin\AdminController@index')->name('admin');
     Route::get('login1','Admin\AdminController@login1')->name('admin');
-    Route::get('huobi','Admin\OtcController@huobi');
-    Route::get('html','HomeController@otcApi');
-    Route::get('usdt','Admin\HuobiOtcController@getInUsdt');
     Route::get('admin/symbol','Admin\OtcController@index');
-    Route::post('admin/symbol/list','Admin\OtcController@Symbol');
-    Route::get('admin/symbol/list','Admin\OtcController@Symbol');
+
 
     //币赢
     Route::get('biying','Admin\BiyingController@symbol');

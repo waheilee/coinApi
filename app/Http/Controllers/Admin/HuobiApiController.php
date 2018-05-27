@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 define('ACCOUNT_ID', 'waheilee@gmail.com'); // 你的账户ID
 define('ACCESS_KEY','db7b0b08-0f87c0c7-66027bf2-f589b'); // 你的ACCESS_KEY
 define('SECRET_KEY', '0586031f-ef8501a0-e17a438b-1b954'); // 你的SECRET_KEY
-class HuobiApiController extends ComController
+class HuobiApiController 
 {
 
     private $api = 'api.huobi.br.com';

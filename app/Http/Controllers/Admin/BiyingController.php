@@ -9,14 +9,14 @@
 namespace App\Http\Controllers\Admin;
 
 
-class BiyingController extends ComController
+class BiyingController
 {
     public function coin($symbol,$type)
     {
 
-        if ($symbol == 'btc')
+        if ($symbol == 'hsr')
         {
-            return $this->btc($symbol,$type);
+            return $this->hsr($symbol,$type);
         }
         if ($symbol == 'eth')
         {
@@ -26,25 +26,28 @@ class BiyingController extends ComController
         {
             return $this->eos($symbol,$type);
         }
-        if ($symbol == 'ltc')
+        if ($symbol == 'snt')
         {
-            return $this->ltc($symbol,$type);
+            return $this->snt($symbol,$type);
         }
-
+        if ($symbol == 'omg')
+        {
+            return $this->omg($symbol,$type);
+        }
     }
-    public function btc($symbol,$type)
+    public function hsr($symbol,$type)
     {
 
-        //btc
-        if ($symbol == 'btc' && $type == 1)
+        //hsr
+        if ($symbol == 'hsr' && $type == 1)
         {
             //买一价
-            $url = 'https://www.coinw.me/appApi.html?action=market&symbol=45';
+            $url = 'https://www.coinw.me/appApi.html?action=market&symbol=5';
             $dd= $this->curl_post_https($url);
             return $dd->buy;
         }else{
             //卖一价
-            $url = 'https://www.coinw.me/appApi.html?action=market&symbol=45';
+            $url = 'https://www.coinw.me/appApi.html?action=market&symbol=5';
             $dd= $this->curl_post_https($url);
             return $dd->sell;
         }
@@ -88,18 +91,36 @@ class BiyingController extends ComController
 
     }
 
-    public function ltc($symbol,$type)
+    public function snt($symbol,$type)
     {
         //ltc
-        if ($symbol == 'ltc' && $type == 1)
+        if ($symbol == 'snt' && $type == 1)
         {
             //买一价
-            $url = 'https://www.coinw.me/appApi.html?action=market&symbol=3';
+            $url = 'https://www.coinw.me/appApi.html?action=market&symbol=24';
             $dd= $this->curl_post_https($url);
             return $dd->buy;
         }else{
             //卖一价
-            $url = 'https://www.coinw.me/appApi.html?action=market&symbol=3';
+            $url = 'https://www.coinw.me/appApi.html?action=market&symbol=24';
+            $dd= $this->curl_post_https($url);
+            return $dd->sell;
+        }
+
+    }
+
+    public function omg($symbol,$type)
+    {
+        //ltc
+        if ($symbol == 'omg' && $type == 1)
+        {
+            //买一价
+            $url = 'https://www.coinw.me/appApi.html?action=market&symbol=11';
+            $dd= $this->curl_post_https($url);
+            return $dd->buy;
+        }else{
+            //卖一价
+            $url = 'https://www.coinw.me/appApi.html?action=market&symbol=11';
             $dd= $this->curl_post_https($url);
             return $dd->sell;
         }
